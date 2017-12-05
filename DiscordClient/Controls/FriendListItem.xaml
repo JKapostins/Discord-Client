@@ -1,0 +1,85 @@
+﻿<UserControl Name="friendListItem"
+    x:Class="Discord.Controls.FriendListItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Discord.Controls"
+    xmlns:converters="using:Discord.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Height="48"
+    d:DesignWidth="256">
+
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.Resources>
+            <converters:StringToBoolConverter x:Key="StringConverter" />
+            <converters:InverseStringToBoolConverter x:Key="InverseStringConverter" />
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="48"/>
+
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <local:CircularImage Grid.Column="0" 
+                             Width="42" Height="42"
+                             Image="{Binding UserIcon, ElementName=friendListItem}"
+                             HorizontalAlignment="Center" VerticalAlignment="Center"
+                             d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition, TopPosition, BottomPosition"
+                              />
+        <local:StatusIndicator Grid.Column="0" 
+                               Width="12" Height="12"
+                               Status="{Binding OnlineStatus, ElementName=friendListItem}"
+                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                               Margin="2"
+                               d:LayoutOverrides="LeftMargin, RightMargin, TopMargin, BottomMargin, LeftPosition, RightPosition, TopPosition, BottomPosition"/>
+
+
+        <Grid Grid.Column="1" Visibility="{Binding GameName, ElementName=friendListItem, Converter={StaticResource StringConverter}}" >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+
+            <!--Foreground="White"-->
+            <TextBlock x:Name="nameTextBlock"
+                       Foreground="{Binding UsernameForeground, ElementName=friendListItem}"
+                       TextTrimming="CharacterEllipsis"
+                       Style="{StaticResource HeaderTextBlockStyle}"
+                       TextWrapping="NoWrap"
+                       Text="{Binding UserName, ElementName=friendListItem, TargetNullValue=UserName}"
+                       VerticalAlignment="Bottom"
+                       FontSize="20"
+                       Margin="10,0,0,0"
+                       d:LayoutOverrides="Height, TopPosition, BottomPosition" />
+
+
+            <TextBlock x:Name="gameTextBlock"
+                       TextTrimming="CharacterEllipsis"
+                       Grid.Row="1" 
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       TextWrapping="NoWrap"
+                       Text="{Binding GameName, ElementName=friendListItem}"
+                       VerticalAlignment="Top"
+                       FontSize="10"
+                       Margin="10,0,0,0"
+                       d:LayoutOverrides="Width, Height"/>
+
+        </Grid>
+
+        <TextBlock Visibility="{Binding GameName, ElementName=friendListItem, Converter={StaticResource InverseStringConverter}}" 
+                   TextTrimming="CharacterEllipsis"
+                   Grid.Column="1"
+                   x:Name="noGameName"
+                   Style="{StaticResource HeaderTextBlockStyle}"
+                   TextWrapping="NoWrap"
+                   Foreground="{Binding UsernameForeground, ElementName=friendListItem}"
+                   Text="{Binding UserName, ElementName=friendListItem, TargetNullValue=UserName}" 
+                   VerticalAlignment="Center"
+                   FontSize="20"
+                   Margin="10,0,0,0"
+                   d:LayoutOverrides="Height, TopPosition, BottomPosition"/>
+
+
+    </Grid>
+</UserControl>

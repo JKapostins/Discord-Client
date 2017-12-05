@@ -1,0 +1,60 @@
+﻿<Page
+    x:Class="DiscordClient.Views.TokenLogin"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DiscordClient.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid  Background="{ThemeResource AppBarItemPointerOverBackgroundThemeBrush}" >
+        <ScrollViewer>
+            <Grid VerticalAlignment="Center" MaxWidth="500">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="180"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Margin="10" >
+                <Image x:Name="ms_appx____Assets_DiscordLogoColored_png" Height="128" Source="ms-appx:///Assets/Discord-Logo-White-Official.png"  HorizontalAlignment="Center" Width="128" />
+                <TextBlock x:Name="titleTextBlock"  Style="{StaticResource TitleTextBlockStyle}" Text="Discord Client"  FontFamily="Adobe Fan Heiti Std B" FontWeight="Bold" FontSize="29.333" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </StackPanel>
+                <StackPanel Grid.Row="1" Margin="10">
+                    <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Notice"/>
+                    <RichTextBlock>
+                        <Paragraph>
+                            The steps below assume that you have the Discord Client installed on your PC and email on your phone.
+                            Your token will be stored in Credential Locker, so you don't have to take these steps again unless you explicitly log out.
+                        </Paragraph>
+                    </RichTextBlock>
+                    
+                    <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Get your token" Margin="0,10,0,0"/>
+                    <RichTextBlock>
+                        <Paragraph>
+                            1. Log into the official Discord client on your pc
+                            <LineBreak/>
+                            2. Press Ctrl+Shift+i to open the inspector
+                            <LineBreak/>
+                            3. Open the "Console" tab at the top
+                            <LineBreak/>
+                            4. Type localStorage.token at the bottom of the console
+                            <LineBreak/>
+                            5. Copy the token between quotation marks and email it to yourself
+                            <LineBreak/>
+                            6. Open your email on your phone and copy the token into the box below and select the login button
+                        </Paragraph>
+                    </RichTextBlock>
+                    <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Login" Margin="0,10,0,0"/>
+                    <TextBlock x:Name="errorMessageTextBlock" Visibility="Collapsed" IsColorFontEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Thin" TextWrapping="Wrap"  d:LayoutOverrides="Height" Foreground="#FFA48E00" Margin="0,5,0,0" FontSize="12"/>
+                    <RichTextBlock x:Name="serverStatus" Margin="0,5,0,0" Visibility="Collapsed" HorizontalAlignment="Left">
+                        <Paragraph>
+                            <Run Foreground="#FFA48E00" FontWeight="Light" Text="Check Discord system status " FontSize="12"/>
+                            <Hyperlink Click="Hyperlink_Click" FontSize="12">here</Hyperlink>
+                        </Paragraph>
+                    </RichTextBlock>
+                    <TextBox  x:Name="tokenBox" Height="24"  TextWrapping="NoWrap" PlaceholderText="Enter token" Margin="0,5,0,0" KeyUp="tokenBox_KeyUp"/>
+                    <Button  x:Name="loginButton" Content="Login"  HorizontalAlignment="Stretch"  Height="33" Margin="0,5,0,0" Click="loginButton_Click"/>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

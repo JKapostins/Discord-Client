@@ -1,0 +1,58 @@
+﻿<UserControl 
+    Name="channelUsersControl"
+    xmlns:my="using:Discord.Controls" 
+    x:Class="DiscordClient.Controls.ChannelUsers"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DiscordClient.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="400"
+    d:DesignWidth="256">
+
+    <Grid BorderBrush="{ThemeResource AppBarToggleButtonBackgroundChecked}" Background="{ThemeResource ToolTipBackground}" BorderThickness="1,1,0,1" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Background="{ThemeResource AppBarButtonBackgroundPointerOver}">
+        <StackPanel Margin="10, 0">
+            <TextBlock Text="Channel Topic" Margin="0,8,0,5"/>
+                <TextBlock Text="{Binding Topic, ElementName=channelUsersControl}" FontSize="12" TextTrimming="CharacterEllipsis"/>
+        </StackPanel>
+        </Grid>
+        <ScrollViewer Grid.Row="1">
+        <StackPanel Margin="10">
+            <StackPanel>
+                <TextBlock Text="Online" Margin="0,0,0,10"/>
+                    <ListView Name="onlineListView" ItemsSource="{Binding OnlineUsers}" Margin="0,0,0,20">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <my:FriendListItem UserName="{Binding UserName, Mode=OneWay}"
+                                                  GameName="{Binding GameName, Mode=OneWay}"
+                                                  UserIcon="{Binding UserIcon, Mode=OneWay}"
+                                                  OnlineStatus="{Binding UserStatus, Mode=OneWay}"
+                                                  UsernameForeground="{Binding UsernameForeground, Mode=OneWay}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Offline" Margin="0,0,0,10"/>
+                    <ListView Name="offlineListview" ItemsSource="{Binding OfflineUsers}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <my:FriendListItem UserName="{Binding UserName, Mode=OneWay}"
+                                                  GameName="{Binding GameName, Mode=OneWay}"
+                                                  UserIcon="{Binding UserIcon, Mode=OneWay}"
+                                                  OnlineStatus="{Binding UserStatus, Mode=OneWay}"
+                                                  UsernameForeground="{Binding UsernameForeground, Mode=OneWay}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+            </StackPanel>
+        </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

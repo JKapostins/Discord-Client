@@ -1,0 +1,114 @@
+﻿<UserControl 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Discord.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModels="using:DiscordClient.ViewModels" x:Name="contextMenu"
+    x:Class="Discord.Controls.ContextMenu"
+    mc:Ignorable="d"
+    d:DesignHeight="400"
+    d:DesignWidth="256">
+
+    <Grid BorderBrush="{ThemeResource AppBarToggleButtonBackgroundChecked}" Background="{ThemeResource ToolTipBackground}" BorderThickness="0,1,1,1" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="56"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="48"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="serverGrid" Background="{ThemeResource AppBarBackground}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="82"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid >
+                <ListView x:Name="friendButtonList" IsItemClickEnabled="True" ItemClick="friendButtonList_ItemClick">
+                    <local:CircularImage  Width="48" Height="48" Margin="-8,5,0,0" Image="ms-appx:///Assets/FriendsIcon.png"/>
+                </ListView>
+                <TextBlock x:Name="friendsTextBlock" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" VerticalAlignment="Bottom" Text="Friends" Margin="8,0,-8,12" />
+                <Path Data="M10,33 L46,29" Fill="White" Height="13.667" Stretch="Fill" Stroke="White" UseLayoutRounding="False" Width="37" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.2">
+                    <Path.RenderTransform>
+                        <CompositeTransform Rotation="19.5"/>
+                    </Path.RenderTransform>
+                </Path>
+            </Grid>
+            <ListView x:Name="serverList" Grid.Row="1" ItemsSource="{Binding Servers}" IsItemClickEnabled="True" ItemClick="serverList_ItemClick">
+                <!--<local:CircularImage  Width="48" Height="48" Margin="-8,0,0,0"/>-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <local:CircularImage Image="{Binding ServerIcon, Mode=OneWay}" Width="48" Height="48" Margin="-8,0,0,0"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+
+        <Grid x:Name="contextGrid" Background="{ThemeResource ToolTipBackground}" Grid.Column="1">
+            <Grid x:Name="channelGrid" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="serverNameTextBlock" Style="{StaticResource HeaderTextBlockStyle}" TextWrapping="NoWrap" Text="{Binding ServerName, ElementName=contextMenu, Mode=OneWay, TargetNullValue=ServerName}" VerticalAlignment="Bottom" FontSize="16" Margin="10,0,0,0"/>
+                <ScrollViewer Grid.Row="1">
+                <StackPanel HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="25,0,0,0" >
+                    <StackPanel Margin="0,5,0,0">
+                        <TextBlock Text="Text Channels" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="16" />
+                        <ListView Name="textChannelList" ItemsSource="{Binding TextChannels}" SelectionChanged="textChannelList_SelectionChanged">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="MinHeight" Value="0"/>
+                                    <Setter Property="Padding" Value="6,3"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ChannelName, Mode=OneWay}" Style="{StaticResource CaptionTextBlockStyle}"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                    <StackPanel Margin="0,20,0,0">
+                        <TextBlock Text="Voice Channels" Style="{StaticResource SubheaderTextBlockStyle}" FontSize="16"/>
+                        <TextBlock Text="Not Supported" Style="{StaticResource CaptionTextBlockStyle}" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </StackPanel>
+                </ScrollViewer>
+            </Grid>
+            <Grid Name="serverError" Visibility="Collapsed">
+                <RichTextBlock Margin="10" Foreground="#FFA48E00">
+                    <Paragraph>
+                        <Run Text="An error occurred while attempting to load the channels for this server. Please report the problem to the "/>
+                        <Hyperlink NavigateUri="https://trello.com/b/HgHREOjb">developer</Hyperlink>
+                            <Run Text=" if the problem persists."/>
+                    </Paragraph>
+                </RichTextBlock>
+            </Grid>
+            <Grid x:Name="friendsGrid" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="32"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="textBlock" Style="{StaticResource HeaderTextBlockStyle}" TextWrapping="NoWrap" Text="Direct Messages" VerticalAlignment="Bottom" FontSize="16" Margin="10,0,0,0"/>
+                <ListView x:Name="directMessageList" Grid.Row="1" Margin="0,5,0,0" ItemsSource="{Binding PrivateChannels}" IsItemClickEnabled="True" ItemClick="directMessageList_ItemClick">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <local:FriendListItem UserName="{Binding UserName, Mode=OneWay}"
+                                                  GameName="{Binding GameName, Mode=OneWay}"
+                                                  UserIcon="{Binding UserIcon, Mode=OneWay}"
+                                                  OnlineStatus="{Binding UserStatus, Mode=OneWay}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2" Background="{ThemeResource AppBarButtonBackgroundPointerOver}">
+            <local:FriendListItem HorizontalAlignment="Stretch" Height="48" Margin="4,0" UserName="{Binding CurrentUserName, ElementName=contextMenu, Mode=OneWay}" GameName="{Binding CurrentUserId, ElementName=contextMenu, Mode=OneWay}" UserIcon="{Binding CurrentUserIcon, ElementName=contextMenu, Mode=OneWay}" OnlineStatus="{Binding CurrentUserStatus, ElementName=contextMenu, Mode=OneWay}"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

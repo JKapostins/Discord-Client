@@ -1,0 +1,86 @@
+﻿<Page xmlns:my="using:DiscordClient.Controls"  Name="mainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Discord"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModels="using:Discord.ViewModels"
+    xmlns:Controls="using:Discord.Controls"
+    x:Class="Discord.MainPage"
+    mc:Ignorable="d" RenderTransformOrigin="0.5,0.5">
+    <Page.RenderTransform>
+        <CompositeTransform TranslateX="-1"/>
+    </Page.RenderTransform>
+
+    <UserControl.Resources>
+        <Style x:Key="HideButton" TargetType="Button">
+            <Setter Property="Background" Value="{ThemeResource ButtonBackground}"/>
+            <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}"/>
+            <Setter Property="Padding" Value="8,4,8,4"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+            <Setter Property="UseSystemFocusVisuals" Value="True"/>
+            <Setter Property="FocusVisualMargin" Value="-3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="RootGrid" Background="{TemplateBinding Background}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+
+    <Page.TopAppBar>
+        <CommandBar  x:Name="commandBar" VerticalAlignment="Top">
+
+            <CommandBar.Content>
+                <TextBlock Name="commandBarHeaderText" Margin="12,14" />
+            </CommandBar.Content>
+            <AppBarToggleButton Name="contextMenuButton" Icon="AllApps" Label="Menu" Click="MenuButton_Click" />
+            <AppBarSeparator/>
+            <AppBarToggleButton Name="peopleButton" Visibility="Collapsed" Icon="People" Label="People" Click="People_Click"/>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Name="tipButton" Label="Tip Developer" Click="tipButton_Click"/>
+                <AppBarButton Name="trelloButton" Label="Track Development (Trello)" Click="trelloButton_Click"/>
+                <AppBarButton Name="followButton" Label="Follow (Twitter)" Click="followButton_Click"/>
+                <AppBarButton Name="likeButton" Label="Like (Facebook)" Click="likeButton_Click"/>
+                <AppBarButton Name="logoutButton" Label="Log out" Click="logoutButton_Click"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.TopAppBar>
+
+    <Grid Name="parentGrid">
+
+        <Grid Background="{ThemeResource ToolTipBackground}" Name="friendsListGrid">
+        <RichTextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                <Paragraph>
+                    <Run Text="Viewing your friend list is not currently supported. Vote for it on the app "/>
+                    <Hyperlink Click="Hyperlink_Click">trello board</Hyperlink>
+                    <Run Text=" if you desire this feature."/>
+                </Paragraph>
+            </RichTextBlock>
+        </Grid>
+        <my:Chat x:Name="chatWindow" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+        <Button Visibility="Collapsed" x:Name="hideContextMenuButton" Grid.RowSpan="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" Style="{StaticResource HideButton}" Click="HideContextMenu_Click"/>
+        <Controls:ContextMenu Visibility="Collapsed" x:Name="contextMenu" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Stretch" Width="256" />
+        <my:ChannelUsers Visibility="Collapsed" x:Name="channelUsers" HorizontalAlignment="Right" VerticalAlignment="Stretch" Width="256"/>
+    </Grid>
+</Page>

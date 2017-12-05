@@ -1,0 +1,19 @@
+﻿<UserControl x:Name="circularImageControl"
+    x:Class="Discord.Controls.CircularImage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Discord.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="200"
+    d:DesignWidth="200">
+
+    <Grid>
+        <Ellipse Stretch="Uniform">
+            <Ellipse.Fill>
+                <ImageBrush x:Name="CircularImageBrush"  Stretch="UniformToFill" ImageSource="{Binding Image, ElementName=circularImageControl, TargetNullValue=ms-appx:///Assets/DiscordLogoSquare.png}"/>
+            </Ellipse.Fill>
+        </Ellipse>
+    </Grid>
+</UserControl>

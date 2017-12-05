@@ -1,0 +1,39 @@
+﻿<UserControl Name="friends"
+    x:Class="Discord.Controls.Friends"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Discord.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="600"
+    d:DesignWidth="400">
+
+    <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}">
+        <Pivot Background="{ThemeResource AppBarItemPointerOverBackgroundThemeBrush}">
+            <PivotItem x:Name="allFriendsTab" Header="All">
+                <Grid>
+                    <ListView x:Name="allFriends"  d:LayoutOverrides="TopPosition, BottomPosition">
+                        <local:FriendListItem UserName="Jake Kapostins" UsernameForeground="Green" GameName="Playing World of Warcraft" OnlineStatus="Active" d:LayoutOverrides="Height"/>
+                        <local:FriendListItem UserName="Jake-Kapostins_Really-Long-Name-Test" OnlineStatus="Away" d:LayoutOverrides="Height"/>
+                        <local:FriendListItem GameName="Playing Jake-Kapostins_Jake-Kapostins" d:LayoutOverrides="Height"/>
+                        <local:FriendListItem GameName="Playing MXGP2" d:LayoutOverrides="Height"/>
+                        <local:FriendListItem GameName="Playing MXGP2" d:LayoutOverrides="Height"/>
+                        <local:FriendListItem GameName="Playing MXGP2" d:LayoutOverrides="Height"/>
+
+                    </ListView>
+                </Grid>
+            </PivotItem>
+            <PivotItem x:Name="onlineFriendsTab" Header="Online">
+                <Grid/>
+            </PivotItem>
+            <PivotItem x:Name="pendingFriendsTab" Header="Pending">
+                <Grid/>
+            </PivotItem>
+            <PivotItem x:Name="blockedFriendsTab" Header="Blocked">
+                <Grid/>
+            </PivotItem>
+        </Pivot>
+
+    </Grid>
+</UserControl>

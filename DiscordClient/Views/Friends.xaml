@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="Discord.Views.Friends"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Discord.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Background="{ThemeResource AppBarBackground}" Grid.Row="0">
+            <TextBlock Grid.Row="0" x:Name="textBlock" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderTextBlockStyle}" TextWrapping="NoWrap" Text="Friends" FontSize="32"/>
+        </Grid>
+        <Pivot Grid.Row="1" Background="{ThemeResource AppBarItemPointerOverBackgroundThemeBrush}">
+            <PivotItem x:Name="allFriendsTab" Header="All">
+                <Grid/>
+            </PivotItem>
+            <PivotItem x:Name="onlineFriendsTab" Header="Online">
+                <Grid/>
+            </PivotItem>
+            <PivotItem x:Name="pendingFriendsTab" Header="Pending">
+                <Grid/>
+            </PivotItem>
+            <PivotItem x:Name="blockedFriendsTab" Header="Blocked">
+                <Grid/>
+            </PivotItem>
+        </Pivot>
+
+    </Grid>
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarToggleButton Icon="AllApps" Label="Menu" Click="MenuButton_Click"/>
+            <AppBarSeparator/>
+            <AppBarButton Icon="AddFriend" Label="Add Friend" Click="AddFriend_Click"/>
+            <AppBarButton Icon="Message" Label="Message" Click="Message_Click"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

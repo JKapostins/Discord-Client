@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="Discord.Views.Login"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Discord.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+<ScrollViewer >
+    <Grid x:Name="parentGrid" Background="{ThemeResource AppBarItemPointerOverBackgroundThemeBrush}">
+        
+            <StackPanel Margin="10,10,20,10" VerticalAlignment="Center" MaxWidth="500">
+                <StackPanel Margin="10" >
+                    <Image x:Name="ms_appx____Assets_DiscordLogoColored_png" Height="128" Source="ms-appx:///Assets/Discord-Logo-White-Official.png"  HorizontalAlignment="Center" Width="128" />
+                    <TextBlock x:Name="titleTextBlock"  Style="{StaticResource TitleTextBlockStyle}" Text="Discord Client"  FontFamily="Adobe Fan Heiti Std B" FontWeight="Bold" FontSize="29.333" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,10,0,0">
+                    <TextBlock x:Name="emailTextBlock" Style="{StaticResource BaseTextBlockStyle}" TextWrapping="NoWrap" Text="EMAIL" VerticalAlignment="Bottom"/>
+                    <TextBox x:Name="emailBox" Height="24"  TextWrapping="NoWrap" Text="" InputScope="EmailSmtpAddress" KeyUp="emailBox_KeyUp"/>
+                </StackPanel>
+
+                <StackPanel Margin="0,20,0,0">
+                    <TextBlock  x:Name="passwordTextBlock" Style="{StaticResource BaseTextBlockStyle}" TextWrapping="NoWrap" Text="PASSWORD" VerticalAlignment="Bottom"/>
+                    <PasswordBox  x:Name="passwordBox" Height="25" KeyUp="passwordBox_KeyUp" />
+                </StackPanel>
+
+                <TextBlock x:Name="errorMessageTextBlock" Visibility="Collapsed" IsColorFontEnabled="True" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Thin" TextWrapping="Wrap"  d:LayoutOverrides="Height" Foreground="#FFA48E00" Margin="0,20,0,0" FontSize="12"/>
+                <RichTextBlock x:Name="serverStatus" Margin="0,5,0,0" Visibility="Collapsed" HorizontalAlignment="Left">
+                    <Paragraph>
+                        <Run Foreground="#FFA48E00" FontWeight="Light" Text="Check Discord system status " FontSize="12"/>
+                        <Hyperlink Click="Hyperlink_Click" FontSize="12">here</Hyperlink>
+                    </Paragraph>
+                </RichTextBlock>
+                <Button  x:Name="loginButton" Content="Login"  HorizontalAlignment="Stretch"  Height="33" Click="loginButton_Click" Margin="0,20,0,0"/>
+            </StackPanel>
+        
+    </Grid>
+</ScrollViewer>
+</Page>

@@ -1,0 +1,59 @@
+﻿<Page
+    x:Class="DiscordClient.Views.TipPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DiscordClient.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ToolTipBackground}">
+
+
+        
+        <ScrollViewer Grid.Row="1">
+            <Grid MaxWidth="500" HorizontalAlignment="Center" Margin="5,0">
+                <StackPanel  Orientation="Vertical" VerticalAlignment="Center" Grid.Row="1" d:LayoutOverrides="Height">
+                    <TextBlock x:Name="pageTitleTextBlock" HorizontalAlignment="Center"  Grid.Row="0" Style="{StaticResource HeaderTextBlockStyle}" TextWrapping="NoWrap" Text="Tip the Developer" VerticalAlignment="Center" FontSize="32" Margin="5,0,0,10"/>
+                    <StackPanel Margin="10,0">
+                        <Button Name="oneDollarButton" Height="38" HorizontalAlignment="Stretch" Margin="10,0,10,5" Content="I just want early access. [ $0.99 ]" Click="oneDollarButton_Click"/>
+                        <Button Name="fiveDollarButton" Height="38" HorizontalAlignment="Stretch" Margin="10,0,10,5" Content="You are awesome, keep it up! [ $4.99 ]" Click="fiveDollarButton_Click"/>
+                        <Button Name="tenDollarButton" Height="38" HorizontalAlignment="Stretch" Margin="10,0,10,5" Content="I love you! Take my money! [ $9.99 ]" Click="tenDollarButton_Click"/>
+                    </StackPanel>
+                    <TextBlock  Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" Text="Note from Developer" FontSize="21.333" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+                    <RichTextBlock MaxWidth="400" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0">
+                        <Paragraph FontSize="14">
+                            <Run Text="For new features and continued support, please leave a tip. Every donation helps me out!"/>
+                        </Paragraph>
+                    </RichTextBlock>
+
+                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" Text="What you get" FontSize="21.333" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+                    <RichTextBlock MaxWidth="400" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0">
+                        <Paragraph FontSize="14">
+                            <Run Text="Donating gets you 'Early Access' to features that are not officially released and still undergoing development. Any tip amount gets you 'Early Access'."/>
+                        </Paragraph>
+                    </RichTextBlock>
+
+                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" Text=" Current Early Access features" FontSize="21.333" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+                    <RichTextBlock MaxWidth="400"  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,5,0">
+                        <Paragraph FontSize="14">
+                            <Run Text="-View people in channel"/>
+                            <LineBreak/>
+                            <Run Text="-Inline images and gifs"/>
+                        </Paragraph>
+                    </RichTextBlock>
+
+                    <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" Text="Cast your vote" FontSize="21.333" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+                    <RichTextBlock MaxWidth="400"  VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0">
+                        <Paragraph FontSize="14">
+                            <Run Text="Vote for new features and leave feedback on the app "/>
+                            <Hyperlink Click="Hyperlink_Click">
+                                <Run Text="trello board"/>
+                            </Hyperlink>
+                        </Paragraph>
+                    </RichTextBlock>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

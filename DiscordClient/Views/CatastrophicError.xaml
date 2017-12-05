@@ -1,0 +1,31 @@
+﻿<Page
+    x:Class="DiscordClient.Views.CatastrophicError"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DiscordClient.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer>
+    <Grid Background="{ThemeResource AppBarItemPointerOverBackgroundThemeBrush}">
+            <StackPanel VerticalAlignment="Center" MaxWidth="600" Margin="10">
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Catastrophic Error"/>
+                <RichTextBlock>
+                    <Paragraph>
+                        Sorry for your trouble, an error occurred that we couldn’t recover from and has been reported to the developer. Please check back for fixes in upcoming releases. Discuss this problem on
+                        <Hyperlink NavigateUri="https://trello.com/b/HgHREOjb">Trello</Hyperlink>
+                        or send a PM on
+                        <Hyperlink NavigateUri="https://www.reddit.com/message/compose/?to=PanicRev38">reddit</Hyperlink>
+                            .
+                    </Paragraph>
+                </RichTextBlock>
+                <StackPanel Margin="0,40,0,0" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button  x:Name="launchButton" Content="Try Again" Width="150 " HorizontalAlignment="Stretch"  Height="33"  Click="launchButton_Click" Margin="0,0,10,0"/>
+                <Button  x:Name="exitButton" Content="Exit App" Width=" 150" HorizontalAlignment="Stretch"  Height="33"  Click="exitButton_Click" Margin="0"  />
+                
+                </StackPanel>
+            </StackPanel>
+    </Grid>
+    </ScrollViewer>
+</Page>
